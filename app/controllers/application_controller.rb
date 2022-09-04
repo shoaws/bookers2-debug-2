@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    home_top_path
+    "/"
   end
 
   def configure_permitted_parameters
