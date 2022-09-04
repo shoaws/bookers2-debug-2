@@ -23,8 +23,16 @@
           <% else %>
             <td><%= render 'favorites/favorite', book: @book %></td>
           <% end %>
+          <td>コメント数:<%= @book.book_comments.count %></td>
         </tr>
       </table>
+      <%= render 'book_comments/comments', book: @book %>
+      <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
+      <% if @error_comment.present? %>
+      <div>
+        <%#= render 'layouts/errors', obj: @book_comment %>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>
