@@ -8,7 +8,15 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
-  resources :users, only: [:index,:show,:edit,:update]
+  resources :users, only: [:index,:show,:edit,:update] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
+
+  #フォロー一覧へのルート
+  get 'users/:id/followings' => 'relationships#followings', as: 'followings'
+  get 'users/:id/followers' => 'relationships#followers', as: 'followers'
 
   #エラーメッセージが出た画面でリロードした際のエラー回避
   get "books/:id/book_comments" => "book_comments#top"
