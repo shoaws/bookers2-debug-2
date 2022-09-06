@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'searches/search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
   get "home/top"=>"homes#top"
@@ -18,7 +19,10 @@ Rails.application.routes.draw do
   get 'users/:id/followings' => 'relationships#followings', as: 'followings'
   get 'users/:id/followers' => 'relationships#followers', as: 'followers'
 
-  #エラーメッセージが出た画面でリロードした際のエラー回避
+  #検索機能
+  get "search" => "searches#search"
+
+  #コメントのエラーメッセージが出た画面でリロードした際のエラー回避
   get "books/:id/book_comments" => "book_comments#top"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
