@@ -23,7 +23,7 @@ class User < ApplicationRecord
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
-  
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -35,7 +35,7 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   #検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
@@ -50,4 +50,13 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
+
+  #User.guestの定義
+  def self.guest
+    find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = 'guestuser'
+    end
+  end
+
 end

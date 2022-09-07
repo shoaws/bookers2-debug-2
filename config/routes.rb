@@ -25,6 +25,11 @@ Rails.application.routes.draw do
   #コメントのエラーメッセージが出た画面でリロードした際のエラー回避
   get "books/:id/book_comments" => "book_comments#top"
 
+  #ゲストユーザーログイン機能
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end
