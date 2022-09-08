@@ -51,7 +51,7 @@ class User < ApplicationRecord
     end
   end
 
-  #User.guestの定義
+  #sessions_controllerで使用するUser.guestの定義
   def self.guest
     find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64

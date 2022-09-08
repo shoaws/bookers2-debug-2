@@ -21,14 +21,14 @@
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% else %>
-            <td><%= render 'favorites/favorite', book: @book %></td>
+            <td id="favorite_btn_<%= @book.id %>"><%= render 'favorites/favorite', book: @book %></td>
           <% end %>
-          <td>コメント数:<%= @book.book_comments.count %></td>
+          <td id="comment_count"><%= render 'book_comments/count', book: @book %></td>
         </tr>
       </table>
-      <%= render 'book_comments/comments', book: @book %>
+      <span id="comment_area"><%= render 'book_comments/comments', book: @book, book_comment: @book_comment %></span>
       <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
-      <%= render 'layouts/errors', obj: @book_comment %>
+      <span id="comment_error"><%= render 'layouts/errors', obj: @book_comment %></span>
     </div>
   </div>
 </div>
