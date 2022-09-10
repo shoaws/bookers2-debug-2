@@ -8,6 +8,10 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+  <div class="form-group">
+    <%= f.label :category %>
+    <%= f.select :category, [["テキスト", "text"], ["小説", "novel"], ["漫画", "comic"], ["その他", "others"]], include_blank: "カテゴリ" %>
+  </div>
 
   <% if request.path.include?("edit") %>
     <div class="form-group row">

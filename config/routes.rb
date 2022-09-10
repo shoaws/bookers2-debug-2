@@ -24,6 +24,12 @@ Rails.application.routes.draw do
 
   #コメントのエラーメッセージが出た画面でリロードした際のエラー回避
   get "books/:id/book_comments" => "book_comments#top"
+  
+  #カテゴリ分け
+  get 'books/text' => 'books#text'
+  get 'books/novel' => 'books#novel'
+  get 'books/comic' => 'books#comic'
+  get 'books/others' => 'books#others'
 
   #ゲストユーザーログイン機能
   devise_scope :user do

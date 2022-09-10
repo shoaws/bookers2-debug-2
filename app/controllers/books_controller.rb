@@ -44,9 +44,25 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def text
+    @books = Book.all
+  end
+
+  def novel
+    @books = Book.all
+  end
+
+  def comic
+    @books = Book.all
+  end
+
+  def others
+    @books = Book.all
+  end
+
   private
 
   def book_params
-    params.require(:book).permit(:title,:body,:star)
+    params.require(:book).permit(:title,:body,:star,:category)
   end
 end
