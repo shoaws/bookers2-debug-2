@@ -12,6 +12,10 @@
     <%= f.label :category %>
     <%= f.select :category, [["テキスト", "text"], ["小説", "novel"], ["漫画", "comic"], ["その他", "others"]], include_blank: "カテゴリ" %>
   </div>
+  <div>
+    <label>タグ</label>
+    <%= f.text_field :name %>
+  </div>
 
   <% if request.path.include?("edit") %>
     <div class="form-group row">
