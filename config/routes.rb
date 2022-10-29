@@ -21,10 +21,11 @@ Rails.application.routes.draw do
 
   #検索機能
   get "search" => "searches#search"
+  get "search_tag"=>"books#search_tag"
 
   #コメントのエラーメッセージが出た画面でリロードした際のエラー回避
   get "books/:id/book_comments" => "book_comments#top"
-  
+
   #カテゴリ分け
   get 'books/text' => 'books#text'
   get 'books/novel' => 'books#novel'

@@ -20,6 +20,11 @@
           <td id="favorite_btn_<%= @book.id %>"><%= render 'favorites/favorite', book: @book %></td>
           <td id="comment_count"><%= render 'book_comments/count', book: @book %></td>
           <td id="star<%= @book.id %>"></td>
+          <td>
+            <% @book_tag.each do |tag| %>
+              <%= tag.name %>
+            <% end %>
+          </td>
           <script>
             $('#star<%= @book.id %>').empty();
             $('#star<%= @book.id %>').raty({

@@ -28,6 +28,7 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    @tag_list = @book.tags.pluck(:name).join(',')
     if @book.user !=current_user
       redirect_to books_path
     end
@@ -35,7 +36,15 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
+    tag_list = params[:book][:name].split(',')
     if @book.update(book_params)
+      # このpost_idに紐づいていたタグを@oldに入れる
+      old_tags = Booktag.where(book_id: @book.id)
+      # それらを取り出し、消す。消し終わる
+      old_tags.each do |tag|
+        tag.delete
+      end
+      @book.save_tag(tag_list)
       redirect_to book_path(@book), notice: "You have updated book successfully."
     else
       render "edit"
@@ -62,6 +71,13 @@ class BooksController < ApplicationController
 
   def others
     @books = Book.all
+  end
+
+  def search_tag
+    @book = Book.new
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @books = @tag.books
   end
 
   private
